@@ -33,18 +33,12 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
         queryKey: ["notes"],
       });
       onClose();
+      mutation.reset();
     },
   });
 
-  const handleSubmit = (
-    values: FormValues,
-    helpers: FormikHelpers<FormValues>,
-  ) => {
-    mutation.mutateAsync(values, {
-      onSuccess: () => {
-        helpers.resetForm();
-      },
-    });
+  const handleSubmit = (values: FormValues) => {
+    mutation.mutate({ ...values });
   };
 
   return (
