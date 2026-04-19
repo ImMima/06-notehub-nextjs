@@ -6,7 +6,8 @@ import css from "./NoteDetails.module.css";
 import { useParams } from "next/navigation";
 
 const NoteDetailsClient = () => {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.id as string;
   const { data, error, isLoading } = useQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNotesById(id),
